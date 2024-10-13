@@ -3,47 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Upload Site</title>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js"></script>
+    <title>Simple File Sharing Service</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #file-list { margin-top: 20px; }
+    </style>
 </head>
 <body>
-    <h1>Upload Your Files</h1>
+    <h1>Upload Your File</h1>
     <form id="upload-form">
-        <input type="file" id="file-input" accept=".txt,.lua" multiple required>
+        <input type="file" id="file-input" required>
         <button type="submit">Upload</button>
     </form>
-    <ul id="file-list"></ul>
+    <div id="file-list"></div>
 
     <script>
-        // Your Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBO3m5fUJvP1Ot3YNk9o7NYoOlvGNGeZ2I",
-  authDomain: "newid-scripts.firebaseapp.com",
-  projectId: "newid-scripts",
-  storageBucket: "newid-scripts.appspot.com",
-  messagingSenderId: "329078438020",
-  appId: "1:329078438020:web:dd2b5f8009b6c5c77c2ad1",
-  measurementId: "G-HK5K782LB7"
-        };
-
-        // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const storage = firebase.storage();
-
         document.getElementById('upload-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the form from submitting the traditional way
-            const fileInput = document.getElementById('file-input');
-            const files = fileInput.files; // Get the selected files
+            event.preventDefault();
 
-            for (const file of files) {
-                const storageRef = storage.ref('uploads/' + file.name); // Create a reference to the storage location
-                storageRef.put(file).then(() => {
-                    alert(file.name + ' uploaded successfully!'); // Notify the user of successful upload
-                }).catch(error => {
-                    console.error('Upload failed:', error); // Handle any errors
-                });
+            const fileInput = document.getElementById('file-input');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Please select a file to upload.');
+                return;
             }
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('https://file.io', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const fileList = document.getElementById('file-list');
+                    const link = document.createElement('a');
+                    link.href = data.link;
+                    link.target = '_blank';
+                    link.textContent = `Download ${file.name}`;
+                    fileList.appendChild(link);
+                    fileList.appendChild(document.createElement('br'));
+                    fileInput.value = ''; // Clear the input after upload
+                } else {
+                    alert('Upload failed: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error uploading file:', error);
+                alert('An error occurred while uploading the file.');
+            });
         });
     </script>
 </body>
