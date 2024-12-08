@@ -1,3 +1,7 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NewIDStuff/NewID-UI-Library/refs/heads/main/NewID-Ui-Library-Loader.lua"))()
+
+Library.NewWindow("NewID Chat Bypasser")
+
 
 if not game:IsLoaded() then
     game.IsLoaded:Wait()
@@ -95,6 +99,7 @@ if not game:IsLoaded() then
     NewIDMain.BorderColor3 = Color3.fromRGB(128, 0, 0)
     NewIDMain.BorderSizePixel = 3
     NewIDMain.Active = true
+    NewIDMain.Visible = false
     NewIDMain.Draggable = true
     NewIDMain.Parent = gui
     
@@ -324,59 +329,59 @@ if not game:IsLoaded() then
     
     local function modifyText(input)
         local replacements = {
-            ["A"] = "==ค==",
-            ["B"] = "==в==",
-            ["C"] = "==¢==",
-            ["D"] = "==d̵==",
-            ["E"] = "==e̵==",
-            ["F"] = "==ʄ==",
-            ["G"] = "==g̵==",
-            ["H"] = "==ɧ==",
-            ["I"] = "==ı==",
-            ["J"] = "==j̵==",
-            ["K"] = "==k==",
-            ["L"] = "==l̴==",
-            ["M"] = "==m̵==",
-            ["N"] = "==n̵==",
-            ["O"] = "==ø==",
-            ["P"] = "==Ᵽ==",
-            ["Q"] = "==ɋ==",
-            ["R"] = "==r̵==",
-            ["S"] = "==ʂ==",
-            ["T"] = "==ɬ==",
-            ["U"] = "==น==",
-            ["V"] = "==v̵==",
-            ["W"] = "==w̵==",
-            ["X"] = "==x̵==",
-            ["Y"] = "==ฯ==",
-            ["Z"] = "==ƶ==",
+            ["A"] = "â€¢คâ€¢",
+            ["B"] = "â€¢вâ€¢",
+            ["C"] = "â€¢¢â€¢",
+            ["D"] = "â€¢d̵â€¢",
+            ["E"] = "â€¢e̵â€¢",
+            ["F"] = "â€¢ʄâ€¢",
+            ["G"] = "â€¢g̵â€¢",
+            ["H"] = "â€¢ɧâ€¢",
+            ["I"] = "â€¢ıâ€¢",
+            ["J"] = "â€¢j̵â€¢",
+            ["K"] = "â€¢kâ€¢",
+            ["L"] = "â€¢l̴â€¢",
+            ["M"] = "â€¢m̵â€¢",
+            ["N"] = "â€¢n̵â€¢",
+            ["O"] = "â€¢øâ€¢",
+            ["P"] = "â€¢Ᵽâ€¢",
+            ["Q"] = "â€¢ɋâ€¢",
+            ["R"] = "â€¢r̵â€¢",
+            ["S"] = "â€¢ʂâ€¢",
+            ["T"] = "â€¢ɬâ€¢",
+            ["U"] = "â€¢นâ€¢",
+            ["V"] = "â€¢v̵â€¢",
+            ["W"] = "â€¢w̵â€¢",
+            ["X"] = "â€¢x̵â€¢",
+            ["Y"] = "â€¢ฯâ€¢",
+            ["Z"] = "â€¢ƶâ€¢",
 
-["a"] = "==ค==",
-["b"] = "==в==",
-["c"] = "==¢==",
-["d"] = "==d̵==",
-["e"] = "==e̵==",
-["f"] = "==ʄ==",
-["g"] = "==g̵==",
-["h"] = "==ɧ==",
-["i"] = "==ı==",
-["j"] = "==j̵==",
-["k"] = "==k==",
-["l"] = "==l̴==",
-["m"] = "==m̵==",
-["n"] = "==n̵==",
-["o"] = "==ø==",
-["p"] = "==Ᵽ==",
-["q"] = "==ɋ==",
-["r"] = "==r̵==",
-["s"] = "==ʂ==",
-["t"] = "==ɬ==",
-["u"] = "==น==",
-["v"] = "==v̵==",
-["w"] = "==w̵==",
-["x"] = "==x̵==",
-["y"] = "==ฯ==",
-["z"] = "==ƶ==",
+["a"] = "â€¢คâ€¢",
+["b"] = "â€¢вâ€¢",
+["c"] = "â€¢¢â€¢",
+["d"] = "â€¢d̵â€¢",
+["e"] = "â€¢єâ€¢",
+["f"] = "â€¢ʄâ€¢",
+["g"] = "â€¢g̵â€¢",
+["h"] = "â€¢ɧâ€¢",
+["i"] = "â€¢ıâ€¢",
+["j"] = "â€¢j̵â€¢",
+["k"] = "â€¢kâ€¢",
+["l"] = "â€¢l̴â€¢",
+["m"] = "â€¢m̵â€¢",
+["n"] = "â€¢n̵â€¢",
+["o"] = "â€¢øâ€¢",
+["p"] = "â€¢Ᵽâ€¢",
+["q"] = "â€¢ɋâ€¢",
+["r"] = "â€¢r̵â€¢",
+["s"] = "â€¢ʂâ€¢",
+["t"] = "â€¢ɬâ€¢",
+["u"] = "â€¢นâ€¢",
+["v"] = "â€¢v̵â€¢",
+["w"] = "â€¢w̵â€¢",
+["x"] = "â€¢x̵â€¢",
+["y"] = "â€¢ฯâ€¢",
+["z"] = "â€¢ƶâ€¢",
            
         }
     
@@ -433,8 +438,7 @@ if not game:IsLoaded() then
 
     
     result = result:gsub("{", ""):gsub("}", "")
-    result = result:gsub("'", "\u{0327}")
-    result = result:gsub("=", "\u{0327}")
+        result = result:gsub("â€¢", "\u{0327}")
     result = result:gsub("I", "â„¹")
     result = result:gsub("|", "\r")
 
@@ -480,3 +484,126 @@ end
     chat.BackgroundColor3 = Color3.fromRGB(50, 50, 50) -- Reset to original color
     end)
     end)
+
+
+    Library.NewToggle("AutoBypasser", function(state)
+        if state then
+            NewIDMain.Visible = true
+        else
+            NewIDMain.Visible = false
+        end
+    end)
+
+    Library.NewButton("Fix Tags", function()
+        local inputString = "ABC123" -- The message you want to send
+        modifyText(inputString)  -- Apply the modifyText function to it
+        
+        local tween = createButtonTween(chat)  -- Create the button click effect
+        tween:Play()
+    
+        tween.Completed:Connect(function()
+            chat.BackgroundColor3 = Color3.fromRGB(50, 50, 50) -- Reset button color
+        end)
+    end)
+    Library.NewDivider()
+
+    Library.NewButton("Fuck", function()
+        local inputString = "Fuck" -- The message you want to send
+        modifyText(inputString)  -- Apply the modifyText function to it
+        
+        local tween = createButtonTween(chat)  -- Create the button click effect
+        tween:Play()
+    
+        tween.Completed:Connect(function()
+            chat.BackgroundColor3 = Color3.fromRGB(50, 50, 50) -- Reset button color
+        end)
+    end)
+
+    Library.NewButton("Shit", function()
+        local inputString = "Shit" -- The message you want to send
+        modifyText(inputString)  -- Apply the modifyText function to it
+        
+        local tween = createButtonTween(chat)  -- Create the button click effect
+        tween:Play()
+    
+        tween.Completed:Connect(function()
+            chat.BackgroundColor3 = Color3.fromRGB(50, 50, 50) -- Reset button color
+        end)
+    end)
+
+    Library.NewButton("Bitch", function()
+        local inputString = "Bitch" -- The message you want to send
+        modifyText(inputString)  -- Apply the modifyText function to it
+        
+        local tween = createButtonTween(chat)  -- Create the button click effect
+        tween:Play()
+    
+        tween.Completed:Connect(function()
+            chat.BackgroundColor3 = Color3.fromRGB(50, 50, 50) -- Reset button color
+        end)
+    end)
+
+    Library.NewButton("Ass", function()
+        local inputString = "Ass" -- The message you want to send
+        modifyText(inputString)  -- Apply the modifyText function to it
+        
+        local tween = createButtonTween(chat)  -- Create the button click effect
+        tween:Play()
+    
+        tween.Completed:Connect(function()
+            chat.BackgroundColor3 = Color3.fromRGB(50, 50, 50) -- Reset button color
+        end)
+    end)
+
+    Library.NewDivider()
+
+    Library.NewButton("Fuck You", function()
+        local inputString = "Fuck You" -- The message you want to send
+        modifyText(inputString)  -- Apply the modifyText function to it
+        
+        local tween = createButtonTween(chat)  -- Create the button click effect
+        tween:Play()
+    
+        tween.Completed:Connect(function()
+            chat.BackgroundColor3 = Color3.fromRGB(50, 50, 50) -- Reset button color
+        end)
+    end)
+
+    Library.NewButton("Get Shit On", function()
+        local inputString = "Get Shit On" -- The message you want to send
+        modifyText(inputString)  -- Apply the modifyText function to it
+        
+        local tween = createButtonTween(chat)  -- Create the button click effect
+        tween:Play()
+    
+        tween.Completed:Connect(function()
+            chat.BackgroundColor3 = Color3.fromRGB(50, 50, 50) -- Reset button color
+        end)
+    end)
+
+    Library.NewButton("You Are Fucking Dumb", function()
+        local inputString = "You Are Fucking Dumb" -- The message you want to send
+        modifyText(inputString)  -- Apply the modifyText function to it
+        
+        local tween = createButtonTween(chat)  -- Create the button click effect
+        tween:Play()
+    
+        tween.Completed:Connect(function()
+            chat.BackgroundColor3 = Color3.fromRGB(50, 50, 50) -- Reset button color
+        end)
+    end)
+
+    Library.NewButton("Are You Fucking High", function()
+        local inputString = "Are You Fucking High" -- The message you want to send
+        modifyText(inputString)  -- Apply the modifyText function to it
+        
+        local tween = createButtonTween(chat)  -- Create the button click effect
+        tween:Play()
+    
+        tween.Completed:Connect(function()
+            chat.BackgroundColor3 = Color3.fromRGB(50, 50, 50) -- Reset button color
+        end)
+    end)
+    
+    
+Library.NewDivider()
