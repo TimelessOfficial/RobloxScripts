@@ -1,1 +1,13 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/NewIDStuff/NewIDScripts.github.io/refs/heads/main/NewIDChatBypasser.txt"))()
+-- Define a function to remove all square brackets
+function removeBrackets(input)
+    -- Use string.gsub to replace "[" and "]" with an empty string
+    local result = input:gsub("[%[%]]", "")
+    return result
+end
+
+-- Example usage
+local exampleText = "loa[[[[[[[[[[[dst[ring(ga[me:[H[[[[[[[[[[[ttp[Get(\"h[[[[[[[[[[[[[[ttp[s://[[[[[[[[[[[ra[[[[[[[[[[[[[[w.gith[ubus[ercont[en[[[[[[[[[t.com/[oa[[[[[[[[[[[[[[[stSt[uf[[[[[[[f/[[[[[[[wda[d/[[[[[[[[[[[refs[/h[eads/[mai[n/a[[[[[[[[[[[w[d.l[ua\"))()"
+local cleanedText = removeBrackets(exampleText)
+
+-- Print the result
+print(cleanedText)
