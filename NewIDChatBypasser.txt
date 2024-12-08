@@ -324,8 +324,8 @@ if not game:IsLoaded() then
     
     local function modifyText(input)
         local replacements = {
-
-            ["B"] = "b",
+["A"] = "a",
+["B"] = "b",
 ["C"] = "c",
 ["D"] = "d",
 ["E"] = "e",
@@ -350,84 +350,111 @@ if not game:IsLoaded() then
 ["X"] = "x",
 ["Y"] = "y",
 ["Z"] = "z",
-            ["fuck"] = "fน¢k",
-            ["Fuck"] = "fน¢k",
-            ["FUCK"] = "fน¢k",
 
-
-            ["you"] = "ɏøʉ",
-            ["You"] = "ɏøʉ",
-            ["YOU"] = "ɏøʉ",
-
-            ["fuck you"] = "£µ¢k ¥ðµ",
-            ["Fuck you"] = "£µ¢k ¥ðµ",
-            ["FUCK YOU"] = "£µ¢k ¥ðµ",
-
-            ["stupid"] = "Ştนpid",
-            ["Stupid"] = "Ştนpid",
-            ["STUPID"] = "Ştนpid",
-
-            ["ass"] = "คŞŞ",
-            ["Ass"] = "คŞŞ",
-            ["ASS"] = "คŞŞ",
-
-            ["shit"] = "ʂɧıɬ",
-            ["Shit"] = "ʂɧıɬ",
-            ["SHIT"] = "ʂɧıɬ",
-
-            ["bitch"] = "вιт¢н",
-            ["Bitch"] = "вιт¢н",
-            ["BITCH"] = "вιт¢н",
-
-            ["ball"] = "b̴a̴l̴l̴",
-            ["Ball"] = "b̴a̴l̴l̴",
-            ["BALL"] = "b̴a̴l̴l̴",
-
-
-            ["A"] = "a",
-
-
+["a"] = "==ค==",
+["b"] = "==в==",
+["c"] = "==¢==",
+["d"] = "==d̵==",
+["e"] = "==e̵==",
+["f"] = "==ʄ==",
+["g"] = "==g̵==",
+["h"] = "==ɧ==",
+["i"] = "==ı==",
+["j"] = "==j̵==",
+["k"] = "==k==",
+["l"] = "==l̴==",
+["m"] = "==m̵==",
+["n"] = "==n̵==",
+["o"] = "==ø==",
+["p"] = "==Ᵽ==",
+["q"] = "==ɋ==",
+["r"] = "==r̵==",
+["s"] = "==ʂ==",
+["t"] = "==ɬ==",
+["u"] = "==น==",
+["v"] = "==v̵==",
+["w"] = "==w̵==",
+["x"] = "==x̵==",
+["y"] = "==ฯ==",
+["z"] = "==ƶ==",
+           
         }
     
-        -- Apply replacements
-        local lowerInput = input
-        for word, replacement in pairs(replacements) do
-            lowerInput = lowerInput:gsub("(%s?)(" .. word .. ")(%s?)", function(before, matched, after)
-                return before .. "{" .. replacement .. "}" .. after  -- Wrap replacement word with {}
-            end)
+        local lowerInput = input:lower()
+
+    
+    for word, replacement in pairs(replacements) do
+        lowerInput = lowerInput:gsub("(%s?)(" .. word .. ")(%s?)", function(before, matched, after)
+            local modifiedReplacement = replacement
+            if before ~= "" then
+                modifiedReplacement = modifiedReplacement
+            end
+            if after ~= "" then
+                modifiedReplacement = modifiedReplacement
+            end
+            return before .. "{" .. modifiedReplacement .. "}" .. after
+        end)
+    end
+
+    
+    local emojiPattern = "[%z\1-\127\194-\244][\128-\191]*"
+    local modifiedInput = lowerInput:gsub(emojiPattern, function(c)
+        if isEmoji(c) then
+            return "{" .. c .. "}"
         end
+        return c
+    end)
+
     
-        -- Apply bullet formatting AFTER each letter of the replaced words
-        local result = ""
-        local insideReplacedWord = false
+    local result = ""
+    local insideReplacedWord = false
+
+    for i = 1, #modifiedInput do
+        local char = modifiedInput:sub(i, i)
+
+        if char == "{" then
+            insideReplacedWord = true
+        elseif char == "}" then
+            insideReplacedWord = false
+        elseif insideReplacedWord then
+            result = result .. char
+        elseif char == " " then
+        result = result .. "\b"
     
-        for i = 1, #lowerInput do
-            local char = lowerInput:sub(i, i)
-    
-            if char == "{" then
-                insideReplacedWord = true
-            elseif char == "}" then
-                insideReplacedWord = false
-            elseif insideReplacedWord then
-                -- Append each character without ">"
-                result = result .. char
-            else
-                result = result .. char  -- Otherwise, append the normal character
+        else
+            result = result .. char
+            
+            if i < #modifiedInput and i % 3 == 1 then
+    result = result .. ""
+
             end
         end
-    
-        result = result:gsub("{", ""):gsub("}", "")  -- Clean up the markers if any
-    
-        -- Send the formatted message to chat
-        local A_1 = result
-        local A_2 = "All"
-    
-        if game:GetService("TextChatService"):FindFirstChild("TextChannels") then
-            game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(A_1)
-        else
-            game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(A_1, A_2)
-        end
     end
+
+    
+    result = result:gsub("{", ""):gsub("}", "")
+    result = result:gsub("'", "\u{0327}")
+    result = result:gsub("=", "\u{0327}")
+    result = result:gsub("I", "â„¹")
+    result = result:gsub("|", "\r")
+
+    
+    result = result:gsub("\u{0327}", "") --[[Remove Again LOLLLL 
+              (Get some furry fandom for ur work roblox)
+                   stepid facebook stalker #ss n**ga gr*y nerdyass delta f*ck"r]]
+    
+    
+
+    
+    local A_1 = result
+    local A_2 = "All"
+
+    if game:GetService("TextChatService"):FindFirstChild("TextChannels") then
+        game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(A_1)
+    else
+        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer( A_1, A_2)
+    end
+end
     
     
     
