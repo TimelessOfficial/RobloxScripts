@@ -112,7 +112,7 @@ if not game:IsLoaded() then
     NewIDTitle.BorderColor3 = Color3.fromRGB(255, 89, 98)
     NewIDTitle.BorderSizePixel = 1
     NewIDTitle.BackgroundTransparency = 1
-    NewIDTitle.Text = "NewID Roblox Chat Bypasser (use capital letters)"
+    NewIDTitle.Text = "NewID Roblox Chat Bypasser"
     NewIDTitle.TextSize = 15
     NewIDTitle.TextColor3 = Color3.fromRGB(128, 0, 0)
     NewIDTitle.Font = Enum.Font.GothamBold
@@ -324,32 +324,32 @@ if not game:IsLoaded() then
     
     local function modifyText(input)
         local replacements = {
-["A"] = "a",
-["B"] = "b",
-["C"] = "c",
-["D"] = "d",
-["E"] = "e",
-["F"] = "f",
-["G"] = "g",
-["H"] = "h",
-["I"] = "i",
-["J"] = "j",
-["K"] = "k",
-["L"] = "l",
-["M"] = "m",
-["N"] = "n",
-["O"] = "o",
-["P"] = "p",
-["Q"] = "q",
-["R"] = "r",
-["S"] = "s",
-["T"] = "t",
-["U"] = "u",
-["V"] = "v",
-["W"] = "w",
-["X"] = "x",
-["Y"] = "y",
-["Z"] = "z",
+            ["A"] = "==ค==",
+            ["B"] = "==в==",
+            ["C"] = "==¢==",
+            ["D"] = "==d̵==",
+            ["E"] = "==e̵==",
+            ["F"] = "==ʄ==",
+            ["G"] = "==g̵==",
+            ["H"] = "==ɧ==",
+            ["I"] = "==ı==",
+            ["J"] = "==j̵==",
+            ["K"] = "==k==",
+            ["L"] = "==l̴==",
+            ["M"] = "==m̵==",
+            ["N"] = "==n̵==",
+            ["O"] = "==ø==",
+            ["P"] = "==Ᵽ==",
+            ["Q"] = "==ɋ==",
+            ["R"] = "==r̵==",
+            ["S"] = "==ʂ==",
+            ["T"] = "==ɬ==",
+            ["U"] = "==น==",
+            ["V"] = "==v̵==",
+            ["W"] = "==w̵==",
+            ["X"] = "==x̵==",
+            ["Y"] = "==ฯ==",
+            ["Z"] = "==ƶ==",
 
 ["a"] = "==ค==",
 ["b"] = "==в==",
